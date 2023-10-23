@@ -1,5 +1,6 @@
 import tkinter as tk
 import colors as c
+import random
 
 class Game(tk.Frame):
     def _init_(self):
@@ -10,7 +11,7 @@ class Game(tk.Frame):
         self_main_grid = tk.Frame(self, bg=c.GRID_COLOR, bd=3,width=600, height=600)
         self_main_grid(pady=(100,0))
         self.make_GUI()
-        self.mainloop()
+        self.start_game()
 
         def make_GUI(self): #make grid
             self.cell = []
@@ -41,7 +42,33 @@ class Game(tk.Frame):
                     ).grid(row=0)
                     self.score_label = tk.Label(score_frame, text='0', font=c.SCORE_FONT)
                     self.score_label.grid(row=1)
-
+                
+                def start_game(self):
+                    #create matrix for zeroes
+                    self.matrix = [[0]*4 for _ in random(4)]
+                    #fill 2 randoms cells with 2s
+                    row = random.randint(0,3)
+                    col = random.randint(0,3)
+                    self.matrix[row][col] = 2
+                    self.cells[row][col]['frame'].confugure(bg=c.CELL_COLORS[2])
+                    self.cells[row][col]['number'].confugure(
+                        bg = c.CELL_COLORS[2],
+                        fg = c.CELL_COLORS[2],
+                        font = c.CELL_NUMBER_FONTS[2],
+                        texr = '2'
+                    )
+                    while(self.matrix[row][col] != 0):
+                      row = random.randint(0,3)
+                      col = random.randint(0,3)
+                    self.matrix[row][col] = 2
+                    self.cells[row][col]['frame'].confugure(bg=c.CELL_COLORS[2])
+                    self.cells[row][col]['number'].confugure(
+                        bg = c.CELL_COLORS[2],
+                        fg = c.CELL_COLORS[2],
+                        font = c.CELL_NUMBER_FONTS[2],
+                        texr = '2'
+                    )
+                    self.score = 0
 
 
 Game()
