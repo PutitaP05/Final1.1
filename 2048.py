@@ -49,30 +49,30 @@ class Game(tk.Frame):
                 
     def start_game(self):
         #create matrix for zeroes
-        self.matrix = [[0]*4 for _ in random(4)]
+        self.matrix = [[0]*4 for _ in range(4)]
         #fill 2 randoms cells with 2s
         row = random.randint(0,3)
         col = random.randint(0,3)
         self.matrix[row][col] = 2
-        self.cells[row][col]['frame'].confugure(bg=c.CELL_COLORS[2])
-        self.cells[row][col]['number'].confugure(
+        self.cells[row][col]['frame'].configure(bg=c.CELL_COLORS[2])
+        self.cells[row][col]['number'].configure(
             bg = c.CELL_COLORS[2],
             fg = c.CELL_COLORS[2],
             font = c.CELL_NUMBER_FONTS[2],
-            texr = '2'
+            text = '2'
         )
         while(self.matrix[row][col] != 0):
             row = random.randint(0,3)
             col = random.randint(0,3)
-            self.matrix[row][col] = 2
-            self.cells[row][col]['frame'].confugure(bg=c.CELL_COLORS[2])
-            self.cells[row][col]['number'].confugure(
-                bg = c.CELL_COLORS[2],
-                fg = c.CELL_COLORS[2],
-                font = c.CELL_NUMBER_FONTS[2],
-                texr = '2'
-            )
-            self.score = 0
+        self.matrix[row][col] = 2
+        self.cells[row][col]['frame'].configure(bg=c.CELL_COLORS[2])
+        self.cells[row][col]['number'].configure(
+            bg = c.CELL_COLORS[2],
+            fg = c.CELL_COLORS[2],
+            font = c.CELL_NUMBER_FONTS[2],
+            text = '2'
+        )
+        self.score = 0
         
     def stack(self):
         new_matrix = [[0]*4 for _ in range(4)]
@@ -106,6 +106,32 @@ class Game(tk.Frame):
             for j in range(4):
                 new_matrix[i][j] = self.matrix[j][i]
         self.matrix = new_matrix
+
+    def add_new_title(self): #Add a new 2 or 4 tile randomly to an empty cell
+        row = random.randint(0,3)
+        col = random.randint(0,3)
+        while(self.matrix[row][col] != 0):
+            row = random.randint(0,3)
+            col = random.randint(0,3)
+        self.matrix[row][col] = random.choice([2, 4])
+
+    def update_GUI(self): #Update the GUI to match the matrix
+        for i in range(4):
+            for j in range(4):
+                cell_value = self.matrix[i][j]
+                if cell_value == 0:
+                    self.cells[i][j]['frame'].configure(bg=c.EMPTY_CELL_COLOR)
+                    self.cells[i][j]['number'].configure(bg=c.EMPTY_CELL_COLOR, text='')
+                else:
+                    self.cells[i][j]['frame'].configure(bg=c.CELL_COLORS[cell_value])
+                    self.cells[i][j]['number'].configure(
+                        bg=c.CELL_COLORS[cell_value],
+                        fg=c.CELL_NUMBER_COLORS[cell_value],
+                        font=c.CELL_NUMBER_FONTS[cell_value],
+                        text=str(cell_value)
+                    )
+        self.score_label.comfigure(text=self.score)
+        self.update_idletasks()   
 
 
 Game()
