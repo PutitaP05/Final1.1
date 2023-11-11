@@ -191,11 +191,11 @@ class Game(tk.Frame):
     
     def check_game_over(self):  # Check if the game is over (Win/Lose)
         if any(2048 in row for row in self.matrix):
-            self.show_game_over_message('You Win!', c.WINNER_BG)
+            self.show_game_over('You Win!', c.WINNER_BG)
         elif not any(0 in row for row in self.matrix) and not self.horizontal_move_exists() and not self.vertical_move_exists():
-            self.show_game_over_message('Game Over!', c.LOSER_BG)
+            self.show_game_over('Game Over!', c.LOSER_BG)
 
-    def show_game_over_message(self, message, bg_color):
+    def show_game_over(self, message, bg_color):
         game_over_frame = tk.Frame(self.main_grid, borderwidth=2)
         game_over_frame.place(relx=0.5, rely=0.5, anchor='center')
         tk.Label(
