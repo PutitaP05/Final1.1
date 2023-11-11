@@ -205,27 +205,6 @@ class Game(tk.Frame):
         fg=c.GAME_OVER_FONT_COLOR,
         font=c.GAME_OVER_FONT
     ).pack()
-    # def game_over(self): #Check if game is over (wWIn/Lose)
-    #     if any(2048 in row for row in self.matrix):
-    #         game_over_frame = tk.Frame(self.main_grid, borderwidth=2)
-    #         game_over_frame.place(relx=0.5, rely=0.5, anchor='center')
-    #         tk.Label(
-    #             game_over_frame,
-    #             text = 'You Win!',
-    #             bg = c.WINNER_BG,
-    #             fg = c.GAME_OVER_FONT_COLOR,
-    #             font = c.GAME_OVER_FONT
-    #         ).pack()
-    #     elif not any(0 in row for row in self.matrix) and not self.horizontal_move_exists() and not self.vertical_move_exists():
-    #         game_over_frame = tk.Frame(self.main_grid, borderwidth=2)
-    #         game_over_frame.place(relx=0.5, rely=0.5, anchor='center')
-    #         tk.Label(
-    #             game_over_frame,
-    #             text = 'Game Over!',
-    #             bg = c.LOSER_BG,
-    #             fg = c.GAME_OVER_FONT_COLOR,
-    #             font = c.GAME_OVER_FONT
-    #         ).pack()
 
 
 def main():
